@@ -1,0 +1,40 @@
+name: 'Sonarqube post action Tool'
+description: 'Sonarqube post action for use in GitHub Actions using Java.'
+inputs:
+  file_path:
+    description: 'Sonarqube report file'
+    required: true
+    default: 'target/sonar/report-task.txt'
+  sonar_token:
+    description: 'Sonarqube token'
+    required: true
+  slack_webhook:
+    description: 'Slack webhook url'
+    required: true
+  slack_mention:
+    description: 'Slack mention'
+    required: true
+  slack_channel:
+    description: 'Slack channel'
+    required: true
+  pull_request_url:
+    description: 'Pull request url'
+    required: true
+  pull_request_title:
+    description: 'Pull request title'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Sonarqube post action
+      shell: java
+      run: |
+        java -jar \
+        -DfilePath='${{ inputs.file_path }}' \
+        -DsonarToken='${{ inputs.sonar_token }}' \
+        -DslackWebhook='${{ inputs.slack_webhook }}' \
+        -DslackMention='${{ inputs.slack_mention }}' \
+        -DslackChannel='${{ inputs.slack_channel }}' \
+        -DpullRequestUrl='${{ inputs.pull_request_url }}' \
+        -DpullRequestTitle='${{ inputs.pull_request_title }}' \
+        dist/sonarqube-post-action.jar
