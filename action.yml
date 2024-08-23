@@ -27,7 +27,7 @@ runs:
   using: 'composite'
   steps:
     - name: Run Sonarqube post action
-      shell: java
+      shell: bash
       run: |
         java -jar \
         -DfilePath='${{ inputs.file_path }}' \
