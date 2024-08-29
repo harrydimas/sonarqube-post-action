@@ -37,4 +37,4 @@ runs:
         -DslackChannel='${{ inputs.slack_channel }}' \
         -DpullRequestUrl='${{ inputs.pull_request_url }}' \
         -DpullRequestTitle='${{ inputs.pull_request_title }}' \
-        ./dist/sonarqube-post-action.jar
+        /var/run/act/actions/harrydimas-sonarqube-post-action@main/dist/sonarqube-post-action.jar
