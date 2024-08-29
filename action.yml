@@ -29,7 +29,7 @@ runs:
     - name: Run Sonarqube post action
       shell: bash
       run: |
-        java -jar \
+        pwd && java -jar \
         -DfilePath='${{ inputs.file_path }}' \
         -DsonarToken='${{ inputs.sonar_token }}' \
         -DslackWebhook='${{ inputs.slack_webhook }}' \
